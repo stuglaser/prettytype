@@ -8,7 +8,7 @@ with open(path.join(HERE, 'README.rst')) as fin:
 
 setup(
     name='prettytype',
-    version='0.1.0',
+    version='0.2.0',
     description='Print types of nested structues',
     long_description=long_description,
     url='https://github.com/stuglaser/prettytype',
@@ -17,8 +17,8 @@ setup(
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.8',
     ],
     packages=find_packages(exclude=['contrib', 'docs', 'test*']),
 )

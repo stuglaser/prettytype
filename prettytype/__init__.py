@@ -1,4 +1,3 @@
-from itertools import izip
 import numbers
 
 
@@ -54,6 +53,8 @@ class AnyT(object):
         if isinstance(other, NoneT):
             return MaybeT(self)
         return self
+
+
 anyT = AnyT()
 
 
@@ -83,7 +84,7 @@ class SimpleType(object):
                 return self
             # Finds a common ancestor
             best = anyT
-            for aT, bT in izip(self.ancestry(), other.ancestry()):
+            for aT, bT in zip(self.ancestry(), other.ancestry()):
                 if aT != bT:
                     break
                 best = aT
@@ -99,12 +100,13 @@ class SimpleType(object):
     def __str__(self):
         return self.name
 
+
 emptyT = SimpleType('')
 noneT = NoneT()
 numberT = SimpleType('number')
 intT = SimpleType('int', parent=numberT, type=int)
 floatT = SimpleType('float', parent=numberT, type=float)
-stringT = SimpleType('str', type=basestring)
+stringT = SimpleType('str', type=str)
 
 PRIMITIVES = [intT, floatT, stringT]
 
@@ -197,7 +199,7 @@ class ClassT(object):
             return self
         elif isinstance(other, ClassT):
             best = anyT
-            for aT, bT in izip(self.ancestry(), other.ancestry()):
+            for aT, bT in zip(self.ancestry(), other.ancestry()):
                 if aT != bT:
                     break
                 best = aT
@@ -237,8 +239,8 @@ def typeof(obj):
         return ListT(msct_all([typeof(x) for x in obj]))
     elif isinstance(obj, dict):
         return DictT(
-            msct_all([typeof(k) for k in obj.iterkeys()]),
-            msct_all([typeof(v) for v in obj.itervalues()]))
+            msct_all([typeof(k) for k in obj.keys()]),
+            msct_all([typeof(v) for v in obj.values()]))
     else:
         return ClassT(type(obj))
 
