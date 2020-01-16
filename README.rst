@@ -16,11 +16,11 @@ For example, let's examine a complex JSON object from the internet:
     
     r = requests.get('https://openlibrary.org/api/books?bibkeys=ISBN:0385472579,LCCN:62019420&format=json')
     data = json.loads(r.text)
-    print 'Data:', data
-    print
+    print('Data:', data)
+    print()
     
     from prettytype import prettytype
-    print 'Type:', prettytype(data)
+    print('Type:', prettytype(data))
     
     ===>
 
